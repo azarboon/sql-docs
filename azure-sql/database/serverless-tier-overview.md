@@ -53,6 +53,10 @@ Serverless is price-performance optimized for single databases with intermittent
 - Single databases in the provisioned compute tier that are frequently rescaled and customers who prefer to delegate compute rescaling to the service.
 - New single databases without usage history where compute sizing is difficult or not possible to estimate before deployment in an Azure SQL Database.
 
+Services like [Azure Functions](https://learn.microsoft.com/azure/azure-functions/functions-overview) may create a new [connection pool](https://wikipedia.org/wiki/Connection_pool) for each function instance, which can lead to connection proliferation under high concurrency. Azure SQL Database is well-suited for such serverless and stateless workloads. Azure SQL Database's serverless compute tier offers dynamic resource scaling and transient connection handling, making it ideal for scenarios with high concurrency and unpredictable traffic. 
+
+To enhance performance and minimize latency, you can optimize connection pooling with libraries like [ADO.NET](https://learn.microsoft.com/dotnet/framework/data/adonet/ado-net-overview) or [Entity Framework](https://learn.microsoft.com/ef), even in serverless scenarios. Incorporate retry logic to address transient faults and utilize monitoring tools like Azure Monitor to track and optimize connection usage. These practices ensure scalability and reduce the risk of bottlenecks in highly concurrent workloads.
+
 ### Scenarios well suited for provisioned compute
 
 - Single databases with more regular, predictable usage patterns and higher average compute utilization over time.
