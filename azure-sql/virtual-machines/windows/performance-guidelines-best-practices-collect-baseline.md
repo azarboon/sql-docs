@@ -72,6 +72,15 @@ The following PerfMon counters can help validate the compute health of a SQL Ser
 > [!NOTE] 
 > Ideally, try to aim for using 80% of your compute, with peaks above 90% but not reaching 100% for any sustained period of time. Fundamentally, you only want to provision the compute the application needs and then plan to scale up or down as the business requires. 
 
+## Connection Pooling Optimization
+
+Connection pooling is an essential performance optimization technique supported by libraries such as ADO.NET and JDBC, which reduce the overhead associated with repeatedly opening and closing database connections. By reusing existing connections, applications can improve throughput, reduce latency, and minimize the resource demands on SQL Server running on Azure Virtual Machines. Efficient resource utilization is achieved by leveraging a cache of open database connections, significantly improving performance for applications with high-frequency or concurrent database access.
+
+To optimize pooling, it is important to configure settings, such as `Max Pool Size`, in alignment with the available resources of the SQL Server instance and the expected workload. Over-provisioning the pool can lead to contention and resource exhaustion, while under-provisioning may result in connection delays. Libraries like ADO.NET and JDBC allow developers to control these settings through connection string parameters, enabling precise adjustments based on application requirements. Authentication mechanisms like Microsoft Entra ID (formerly Azure AD) can also impact connection pooling due to token expiration. Shorter connection lifetimes or token renewal mechanisms should be considered to prevent invalid connections from disrupting reuse.
+
+Network latency and endpoint configurations can influence pooling efficiency. Public endpoints may introduce higher latency compared to private or direct connections, requiring adjustments to timeout settings and pool sizes. Proper firewall configurations and DNS settings are also critical to ensuring reliable connection reuse. In environments enforcing TLS/SSL encryption, connection strings must include encryption parameters, such as `Encrypt=True`, to prevent connection failures and maintain pooling effectiveness.
+
+Monitoring the connection pool’s utilization and health is crucial for identifying bottlenecks or misconfigurations. Tools such as SQL Server Extended Events or application performance monitoring solutions can provide insights into connection behavior. Regularly optimizing pool settings based on workload patterns can help sustain high performance, especially in dynamic or cloud-native deployments. Properly configured, connection pooling using libraries like ADO.NET and JDBC can significantly enhance the performance and scalability of SQL Server on Azure Virtual Machines.
 
 ## Next steps
 
