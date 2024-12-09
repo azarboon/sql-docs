@@ -151,7 +151,7 @@ The following virtual network features are currently *not supported* with SQL Ma
 
 ## Connection Pooling
 
-Connection pooling is a client-side mechanism that optimizes database connectivity by reusing existing connections rather than creating a new connection for each request. This improves performance, reduces latency, and helps manage connection limits effectively. In Azure SQL Managed Instance, connection pooling is typically handled by the client application using libraries such as [ADO.NET](../../../docs/framework/data/adonet/sql-server-connection-pooling.md) or JDBC.
+Connection pooling is a client-side mechanism that optimizes database connectivity by reusing existing connections rather than creating a new connection for each request. This improves performance, reduces latency, and helps manage connection limits effectively. In Azure SQL Managed Instance, connection pooling is typically handled by the client application using libraries such as [ADO.NET](https://learn.microsoft.com/dotnet/framework/data/adonet/sql-server-connection-pooling) or JDBC.
 
 When an application interacts with Azure SQL Managed Instance, connection pooling reuses open connections from a pool, reducing the overhead of repeatedly establishing and closing connections. The pooling behavior is configured and managed at the client level, often through connection string settings like `Max Pool Size` and `Min Pool Size`.
 
